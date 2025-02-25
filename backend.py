@@ -1,10 +1,10 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
-import openai, json, re
+import openai, json, re, os
 
 app = Flask(__name__)
 CORS(app)
-openai.api_key = "____subscription____key____goes____here____"
+os.getenv("OPENAI_API_KEY")
 
 
 def prioritize_tasks(job_description, tasks):
@@ -45,6 +45,10 @@ def prioritize_tasks(job_description, tasks):
     )
     
     return response["choices"][0]["message"]["content"]
+
+@app.route('/')
+def index():
+    return render_template('ui.html')
 
 @app.route('/prioritize', methods=['POST'])
 def prioritize():

@@ -145,7 +145,7 @@
 			let body = JSON.stringify(requestData);
 			console.log("Request : ", body);
             try {
-                const response = await fetch("http://localhost/prioritize", {
+                const response = await fetch("http://https://prioritiser.prosartech.com/prioritize", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: body
